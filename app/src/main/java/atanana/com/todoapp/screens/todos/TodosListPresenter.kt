@@ -1,10 +1,14 @@
 package atanana.com.todoapp.screens.todos
 
-import android.content.Context
-import android.widget.Toast
+import android.support.v4.app.FragmentManager
+import atanana.com.todoapp.R
+import atanana.com.todoapp.screens.edittodo.EditTodo
 
-class TodosListPresenter(private val context: Context) {
+class TodosListPresenter(private val fragmentManager: FragmentManager) {
     fun addTodo() {
-        Toast.makeText(context, "add todo", Toast.LENGTH_SHORT).show()
+        fragmentManager.beginTransaction()
+            .replace(R.id.container, EditTodo.newInstance())
+            .addToBackStack(EditTodo::class.java.name)
+            .commit()
     }
 }

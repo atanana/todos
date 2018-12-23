@@ -19,5 +19,7 @@ class EditTodo : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_todo, container, false)
     }
 
-
+    companion object {
+        fun newInstance(): EditTodo = EditTodo()
+    }
 }
