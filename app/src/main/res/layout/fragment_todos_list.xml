@@ -5,5 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".screens.todos.TodosList">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/default_margin"
+        android:src="@drawable/ic_add" />
 
 </FrameLayout>
