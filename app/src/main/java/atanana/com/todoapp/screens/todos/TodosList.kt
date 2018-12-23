@@ -17,4 +17,8 @@ class TodosList : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_todos_list, container, false)
     }
+
+    companion object {
+        fun newInstance(): TodosList = TodosList()
+    }
 }
