@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import atanana.com.todoapp.R
 import atanana.com.todoapp.screens.TodosFragment
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.closestKodein
 import org.kodein.di.generic.instance
@@ -25,7 +27,9 @@ class EditTodo : TodosFragment(), KodeinAware {
     }
 
     override fun onBackPressed() {
-        presenter.onBackPress()
+        GlobalScope.launch {
+            presenter.onBackPress()
+        }
     }
 
     companion object {
