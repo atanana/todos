@@ -19,10 +19,10 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-
         val todosFragment = findCurrentFragment() as? TodosFragment
         todosFragment?.onBackPressed()
+
+        super.onBackPressed()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
