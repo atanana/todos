@@ -3,10 +3,10 @@ package atanana.com.todoapp.db
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "todos")
 data class TodoEntity(
     @PrimaryKey
-    val id: Long? = null,
-    val title: String = "",
-    val text: String = ""
+    var id: Long? = null,
+    var title: String = "",
+    var text: String = ""
 )
