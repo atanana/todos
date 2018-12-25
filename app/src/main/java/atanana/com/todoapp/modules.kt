@@ -14,3 +14,7 @@ fun activityModule(activity: FragmentActivity): Kodein.Module = Kodein.Module("A
     bind<FragmentManager>() with singleton { activity.supportFragmentManager }
     bind() from scoped(AndroidLifecycleScope).singleton { TodosListPresenter(instance()) }
 }
+
+fun appModule(app: App): Kodein.Module = Kodein.Module("App module") {
+    bind() from singleton { buildDatabase(instance()) }
+}
