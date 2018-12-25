@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity
 
 @Entity
 data class TodoEntity(
-    val id: Long?,
-    val title: String,
-    val text: String
+    val id: Long? = null,
+    val title: String = "",
+    val text: String = ""
 )
