@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import atanana.com.todoapp.R
+import atanana.com.todoapp.screens.TodosFragment
 
-class EditTodo : Fragment() {
+class EditTodo : TodosFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

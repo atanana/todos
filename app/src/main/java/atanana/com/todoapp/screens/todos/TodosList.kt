@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import atanana.com.todoapp.R
+import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_todos_list.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.support.closestKodein
 import org.kodein.di.generic.instance
 
-class TodosList : Fragment(), KodeinAware {
+class TodosList : TodosFragment(), KodeinAware {
     override val kodein by closestKodein()
 
     private val presenter: TodosListPresenter by instance()
