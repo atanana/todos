@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query
 @Dao
 interface TodoDao {
     @Insert
-    fun insert(todo: TodoEntity)
+    fun insert(todo: TodoEntity): Long
 
     @Query("select * from todos")
     fun allTodos(): List<TodoEntity>

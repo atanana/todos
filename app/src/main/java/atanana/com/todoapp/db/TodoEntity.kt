@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "todos")
 data class TodoEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long? = null,
     var title: String = "",
     var text: String = ""
