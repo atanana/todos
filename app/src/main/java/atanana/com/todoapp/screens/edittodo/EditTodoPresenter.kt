@@ -17,7 +17,9 @@ class EditTodoPresenter(private val database: TodosDatabase) {
     }
 
     suspend fun onBackPress() = withContext(Dispatchers.IO) {
-        val dao = database.todosDao()
-        dao.insert(todo)
+        if (todo.title.isNotEmpty() || todo.text.isNotEmpty()) {
+            val dao = database.todosDao()
+            dao.insert(todo)
+        }
     }
 }
