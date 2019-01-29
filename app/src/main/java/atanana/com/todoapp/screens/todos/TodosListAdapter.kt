@@ -11,11 +11,12 @@ import atanana.com.todoapp.db.TodoEntity
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_todo.*
 
-class TodosListAdapter : ListAdapter<TodoEntity, TodoViewHolder>(DIFF_CALLBACK) {
+class TodosListAdapter(private val onTodoClick: (todoId: Long) -> Unit) :
+    ListAdapter<TodoEntity, TodoViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): TodoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_todo, parent, false) as ViewGroup
-        return TodoViewHolder(view)
+        return TodoViewHolder(view, onTodoClick)
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
@@ -31,8 +32,10 @@ class TodosListAdapter : ListAdapter<TodoEntity, TodoViewHolder>(DIFF_CALLBACK) 
     }
 }
 
-class TodoViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class TodoViewHolder(override val containerView: View, private val onTodoClick: (todoId: Long) -> Unit) :
+    RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(todo: TodoEntity) {
         todo_title.text = todo.title
+        containerView.setOnClickListener { onTodoClick(todo.id!!) }
     }
 }

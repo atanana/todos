@@ -11,11 +11,17 @@ class TodosListPresenter(
     private val fragmentManager: FragmentManager,
     private val database: TodosDatabase
 ) {
-    val adapter = TodosListAdapter()
+    val adapter = TodosListAdapter { todoId ->
+        openFragment(EditTodo.newInstance(todoId))
+    }
 
     fun addTodo() {
+        openFragment(EditTodo.newInstance())
+    }
+
+    private fun openFragment(fragment: EditTodo) {
         fragmentManager.beginTransaction()
-            .replace(R.id.container, EditTodo.newInstance())
+            .replace(R.id.container, fragment)
             .addToBackStack(EditTodo::class.java.name)
             .commit()
     }

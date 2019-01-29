@@ -11,4 +11,7 @@ interface TodoDao {
 
     @Query("select * from todos")
     fun allTodos(): List<TodoEntity>
+
+    @Query("select * from todos where id = :id")
+    fun byId(id: Long): TodoEntity?
 }
