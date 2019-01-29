@@ -8,6 +8,14 @@ import kotlinx.coroutines.withContext
 class EditTodoPresenter(private val database: TodosDatabase) {
     private var todo = TodoEntity()
 
+    fun updateTitle(title: String) {
+        todo.title = title
+    }
+
+    fun updateText(text: String) {
+        todo.text = text
+    }
+
     suspend fun onBackPress() = withContext(Dispatchers.IO) {
         val dao = database.todosDao()
         dao.insert(todo)
