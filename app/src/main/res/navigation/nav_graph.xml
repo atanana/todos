@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todosList">
+
+    <fragment
+        android:id="@+id/todosList"
+        android:name="atanana.com.todoapp.screens.todos.TodosList"
+        android:label="fragment_todos_list"
+        tools:layout="@layout/fragment_todos_list">
+        <action
+            android:id="@+id/action_todosList_to_editTodo"
+            app:destination="@id/editTodo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editTodo"
+        android:name="atanana.com.todoapp.screens.edittodo.EditTodo"
+        android:label="fragment_edit_todo"
+        tools:layout="@layout/fragment_edit_todo" />
+</navigation>

@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_todos_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TodosList : TodosFragment() {
-    //    private val presenter: TodosListPresenter by instance()
     private val listViewModel: TodosListViewModel by viewModel()
 
     private val adapter = TodosListAdapter { todoId ->
