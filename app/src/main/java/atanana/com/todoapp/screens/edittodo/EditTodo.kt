@@ -14,11 +14,11 @@ import kotlinx.android.synthetic.main.fragment_edit_todo.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.support.closestKodein
+import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 class EditTodo : TodosFragment(), KodeinAware {
-    override val kodein by closestKodein()
+    override val kodein by kodein()
 
     private val presenter: EditTodoPresenter by instance(arg = this)
 

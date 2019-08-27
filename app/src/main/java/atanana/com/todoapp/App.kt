@@ -3,11 +3,11 @@ package atanana.com.todoapp
 import android.app.Application
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.androidModule
+import org.kodein.di.android.x.androidXModule
 
 class App : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
-        import(androidModule(this@App))
-        import(appModule(this@App))
+        import(androidXModule(this@App))
+        import(appModule())
     }
 }

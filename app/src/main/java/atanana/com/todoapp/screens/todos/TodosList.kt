@@ -11,11 +11,11 @@ import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_todos_list.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.support.closestKodein
+import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 class TodosList : TodosFragment(), KodeinAware {
-    override val kodein by closestKodein()
+    override val kodein by kodein()
 
     private val presenter: TodosListPresenter by instance()
 
@@ -32,11 +32,8 @@ class TodosList : TodosFragment(), KodeinAware {
             presenter.addTodo()
         }
 
-        todos_list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
-            requireContext(),
-            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
-            false
-        )
+        todos_list.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         todos_list.adapter = presenter.adapter
     }
 
