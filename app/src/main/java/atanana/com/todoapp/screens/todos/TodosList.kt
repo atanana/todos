@@ -16,6 +16,10 @@ class TodosList : TodosFragment() {
     //    private val presenter: TodosListPresenter by instance()
     private val listViewModel: TodosListViewModel by viewModel()
 
+    private val adapter = TodosListAdapter { todoId ->
+        //        openFragment(EditTodo.newInstance(todoId))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +35,10 @@ class TodosList : TodosFragment() {
 
         todos_list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//        todos_list.adapter = presenter.adapter
+        todos_list.adapter = adapter
 
         listViewModel.todosData.observe(viewLifecycleOwner, Observer { todos ->
-            //            presenter.adapter.submitList(todos)
+            adapter.submitList(todos)
         })
     }
 
