@@ -11,7 +11,7 @@ interface TodoDao {
     fun insert(todo: TodoEntity): Long
 
     @Query("select * from todos")
-    fun allTodos(): List<TodoEntity>
+    suspend fun allTodos(): List<TodoEntity>
 
     @Query("select * from todos where id = :id")
     fun byId(id: Long): TodoEntity?
