@@ -2,10 +2,10 @@ package atanana.com.todoapp.screens.todos
 
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import atanana.com.todoapp.R
 import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_todos_list.*
@@ -32,7 +32,11 @@ class TodosList : TodosFragment(), KodeinAware {
             presenter.addTodo()
         }
 
-        todos_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        todos_list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            requireContext(),
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
         todos_list.adapter = presenter.adapter
     }
 

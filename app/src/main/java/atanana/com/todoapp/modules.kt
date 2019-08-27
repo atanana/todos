@@ -1,7 +1,5 @@
 package atanana.com.todoapp
 
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
 import atanana.com.todoapp.screens.edittodo.EditTodo
 import atanana.com.todoapp.screens.edittodo.EditTodoPresenter
 import atanana.com.todoapp.screens.todos.TodosListPresenter
@@ -9,8 +7,9 @@ import org.kodein.di.Kodein
 import org.kodein.di.android.support.AndroidLifecycleScope
 import org.kodein.di.generic.*
 
-fun activityModule(activity: FragmentActivity): Kodein.Module = Kodein.Module("Activity module") {
-    bind<FragmentManager>() with singleton { activity.supportFragmentManager }
+fun activityModule(activity: androidx.fragment.app.FragmentActivity): Kodein.Module =
+    Kodein.Module("Activity module") {
+        bind<androidx.fragment.app.FragmentManager>() with singleton { activity.supportFragmentManager }
     bind() from scoped(AndroidLifecycleScope).singleton { TodosListPresenter(instance(), instance()) }
 }
 

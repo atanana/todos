@@ -1,11 +1,10 @@
 package atanana.com.todoapp.screens.todos
 
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import atanana.com.todoapp.R
 import atanana.com.todoapp.db.TodoEntity
 import kotlinx.android.extensions.LayoutContainer
@@ -33,7 +32,7 @@ class TodosListAdapter(private val onTodoClick: (todoId: Long) -> Unit) :
 }
 
 class TodoViewHolder(override val containerView: View, private val onTodoClick: (todoId: Long) -> Unit) :
-    RecyclerView.ViewHolder(containerView), LayoutContainer {
+    androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(todo: TodoEntity) {
         todo_title.text = todo.title
         containerView.setOnClickListener { onTodoClick(todo.id!!) }

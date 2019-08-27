@@ -1,7 +1,7 @@
 package atanana.com.todoapp
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import atanana.com.todoapp.screens.TodosFragment
 import atanana.com.todoapp.screens.todos.TodosList
 import org.kodein.di.Kodein
