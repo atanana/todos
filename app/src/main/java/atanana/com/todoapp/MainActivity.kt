@@ -4,20 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import atanana.com.todoapp.screens.TodosFragment
 import atanana.com.todoapp.screens.todos.TodosList
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.closestKodein
 
-class MainActivity : AppCompatActivity(), KodeinAware {
-    private val parentKodein by closestKodein()
-
-    override val kodein: Kodein by lazy {
-        Kodein {
-            extend(parentKodein)
-            import(activityModule(this@MainActivity))
-        }
-    }
-
+class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val todosFragment = findCurrentFragment() as? TodosFragment
         todosFragment?.onBackPressed()

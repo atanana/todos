@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import atanana.com.todoapp.R
 import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_todos_list.*
-import kotlinx.coroutines.launch
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class TodosList : TodosFragment(), KodeinAware {
-    override val kodein by kodein()
-
-    private val presenter: TodosListPresenter by instance()
+class TodosList : TodosFragment() {
+    //    private val presenter: TodosListPresenter by instance()
+    private val listViewModel: TodosListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,20 +26,21 @@ class TodosList : TodosFragment(), KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         add_todo.setOnClickListener {
-            presenter.addTodo()
+            //            presenter.addTodo()
         }
 
         todos_list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        todos_list.adapter = presenter.adapter
+//        todos_list.adapter = presenter.adapter
+
+        listViewModel.todosData.observe(viewLifecycleOwner, Observer { todos ->
+            //            presenter.adapter.submitList(todos)
+        })
     }
 
     override fun onResume() {
         super.onResume()
-
-        uiScope.launch {
-            presenter.loadTodos()
-        }
+        listViewModel.loadTodos()
     }
 
     companion object {

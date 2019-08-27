@@ -9,18 +9,10 @@ import android.view.ViewGroup
 import atanana.com.todoapp.R
 import atanana.com.todoapp.db.TodoEntity
 import atanana.com.todoapp.screens.TodosFragment
-import atanana.com.todoapp.ui.TextWatcherAdapter
 import kotlinx.android.synthetic.main.fragment_edit_todo.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 
-class EditTodo : TodosFragment(), KodeinAware {
-    override val kodein by kodein()
-
-    private val presenter: EditTodoPresenter by instance(arg = this)
+class EditTodo : TodosFragment() {
+//    private val presenter: EditTodoPresenter by instance(arg = this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +23,10 @@ class EditTodo : TodosFragment(), KodeinAware {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        todo_title.addTextChangedListener(TextWatcherAdapter(presenter::updateTitle))
-        todo_text.addTextChangedListener(TextWatcherAdapter(presenter::updateText))
-
-        uiScope.launch { presenter.onViewCreated() }
+//        todo_title.addTextChangedListener(TextWatcherAdapter(presenter::updateTitle))
+//        todo_text.addTextChangedListener(TextWatcherAdapter(presenter::updateText))
+//
+//        uiScope.launch { presenter.onViewCreated() }
     }
 
     fun setTodo(todoEntity: TodoEntity) {
@@ -43,9 +35,9 @@ class EditTodo : TodosFragment(), KodeinAware {
     }
 
     override fun onBackPressed() {
-        GlobalScope.launch {
-            presenter.onBackPress()
-        }
+//        GlobalScope.launch {
+//            presenter.onBackPress()
+//        }
     }
 
     companion object {
