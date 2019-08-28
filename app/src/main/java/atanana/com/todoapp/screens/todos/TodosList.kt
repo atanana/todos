@@ -36,7 +36,7 @@ class TodosList : TodosFragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         todos_list.adapter = adapter
 
-        listViewModel.todosData.observe(viewLifecycleOwner, Observer { todos ->
+        listViewModel.todos.observe(viewLifecycleOwner, Observer { todos ->
             adapter.submitList(todos)
         })
     }

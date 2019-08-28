@@ -9,12 +9,12 @@ import atanana.com.todoapp.screens.TodosViewModel
 import kotlinx.coroutines.launch
 
 class TodosListViewModel(private val database: TodosDatabase) : TodosViewModel() {
-    private val todos = MutableLiveData<List<TodoEntity>>()
-    val todosData: LiveData<List<TodoEntity>> = todos
+    private val todosData = MutableLiveData<List<TodoEntity>>()
+    val todos: LiveData<List<TodoEntity>> = todosData
 
     fun loadTodos() {
         viewModelScope.launch {
-            todos.value = database.todosDao().allTodos()
+            todosData.value = database.todosDao().allTodos()
         }
     }
 }
