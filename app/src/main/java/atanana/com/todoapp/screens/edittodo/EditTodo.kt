@@ -6,6 +6,8 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import atanana.com.todoapp.R
 import atanana.com.todoapp.db.TodoEntity
 import atanana.com.todoapp.screens.TodosFragment
@@ -13,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_edit_todo.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class EditTodo : TodosFragment<EditTodoViewModel>() {
+    private val args: EditTodoArgs by navArgs()
+
     override val model: EditTodoViewModel by viewModel()
 
     override fun onCreateView(
@@ -24,6 +28,10 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        model.init(args)
+        model.todo.observe(viewLifecycleOwner, Observer { todo ->
+            setTodo(todo)
+        })
 //        todo_title.addTextChangedListener(TextWatcherAdapter(presenter::updateTitle))
 //        todo_text.addTextChangedListener(TextWatcherAdapter(presenter::updateText))
 //

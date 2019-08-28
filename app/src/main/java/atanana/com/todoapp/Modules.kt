@@ -22,5 +22,5 @@ val appModule = module {
     single { buildDatabase(get()) }
 
     viewModel { TodosListViewModel(get()) }
-    viewModel { EditTodoViewModel() }
+    viewModel { EditTodoViewModel(get()) }
 }
