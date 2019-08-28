@@ -16,7 +16,7 @@ class TodosList : TodosFragment<TodosListViewModel>() {
     override val model: TodosListViewModel by viewModel()
 
     private val adapter = TodosListAdapter { todoId ->
-        //        openFragment(EditTodo.newInstance(todoId))
+        model.onTodoClick(todoId)
     }
 
     override fun onCreateView(
