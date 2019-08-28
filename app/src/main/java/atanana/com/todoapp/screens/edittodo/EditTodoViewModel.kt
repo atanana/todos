@@ -26,7 +26,7 @@ class EditTodoViewModel(private val database: TodosDatabase) : TodosViewModel() 
             todo.title = title
             todo.text = text
             database.todosDao().insert(todo)
-//            goBack()
+            goBack()
         }
     }
 }
