@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import atanana.com.todoapp.R
@@ -32,11 +33,18 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
         model.todo.observe(viewLifecycleOwner, Observer { todo ->
             setTodo(todo)
         })
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            val title = todo_title.text.toString()
+            val text = todo_text.text.toString()
+            model.updateTodo(title, text)
+        }
 //        todo_title.addTextChangedListener(TextWatcherAdapter(presenter::updateTitle))
 //        todo_text.addTextChangedListener(TextWatcherAdapter(presenter::updateText))
 //
 //        uiScope.launch { presenter.onViewCreated() }
     }
+
 
     fun setTodo(todoEntity: TodoEntity) {
         todo_title.text = SpannableStringBuilder(todoEntity.title)

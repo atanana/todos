@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import atanana.com.todoapp.db.TodoEntity
 import atanana.com.todoapp.db.TodosDatabase
 import atanana.com.todoapp.screens.TodosViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class EditTodoViewModel(private val database: TodosDatabase) : TodosViewModel() {
@@ -13,10 +14,19 @@ class EditTodoViewModel(private val database: TodosDatabase) : TodosViewModel() 
     val todo: LiveData<TodoEntity> = todoData
 
     fun init(args: EditTodoArgs) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val todo = database.todosDao().byId(args.todoId)
+            todoData.postValue(todo ?: TodoEntity())
+        }
+    }
+
+    fun updateTodo(title: String, text: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val todo = todo.value
             if (todo != null) {
-                todoData.value = todo
+                todo.title = title
+                todo.text = text
+                database.todosDao().insert(todo)
             }
         }
     }
