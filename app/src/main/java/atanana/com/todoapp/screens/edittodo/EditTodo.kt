@@ -10,9 +10,10 @@ import atanana.com.todoapp.R
 import atanana.com.todoapp.db.TodoEntity
 import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_edit_todo.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class EditTodo : TodosFragment() {
-//    private val presenter: EditTodoPresenter by instance(arg = this)
+class EditTodo : TodosFragment<EditTodoViewModel>() {
+    override val model: EditTodoViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +33,6 @@ class EditTodo : TodosFragment() {
     fun setTodo(todoEntity: TodoEntity) {
         todo_title.text = SpannableStringBuilder(todoEntity.title)
         todo_text.text = SpannableStringBuilder(todoEntity.text)
-    }
-
-    override fun onBackPressed() {
-//        GlobalScope.launch {
-//            presenter.onBackPress()
-//        }
     }
 
     companion object {

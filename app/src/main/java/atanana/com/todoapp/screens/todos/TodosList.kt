@@ -12,8 +12,8 @@ import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_todos_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class TodosList : TodosFragment() {
-    private val listViewModel: TodosListViewModel by viewModel()
+class TodosList : TodosFragment<TodosListViewModel>() {
+    override val model: TodosListViewModel by viewModel()
 
     private val adapter = TodosListAdapter { todoId ->
         //        openFragment(EditTodo.newInstance(todoId))
@@ -36,17 +36,13 @@ class TodosList : TodosFragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         todos_list.adapter = adapter
 
-        listViewModel.todos.observe(viewLifecycleOwner, Observer { todos ->
+        model.todos.observe(viewLifecycleOwner, Observer { todos ->
             adapter.submitList(todos)
         })
     }
 
     override fun onResume() {
         super.onResume()
-        listViewModel.loadTodos()
-    }
-
-    companion object {
-        fun newInstance(): TodosList = TodosList()
+        model.loadTodos()
     }
 }
