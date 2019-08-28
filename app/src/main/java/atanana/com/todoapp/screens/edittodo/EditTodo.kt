@@ -23,10 +23,7 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_todo, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.fragment_edit_todo, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         model.init(args)
@@ -35,16 +32,12 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
         })
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
+            isEnabled = false
             val title = todo_title.text.toString()
             val text = todo_text.text.toString()
             model.updateTodo(title, text)
         }
-//        todo_title.addTextChangedListener(TextWatcherAdapter(presenter::updateTitle))
-//        todo_text.addTextChangedListener(TextWatcherAdapter(presenter::updateText))
-//
-//        uiScope.launch { presenter.onViewCreated() }
     }
-
 
     fun setTodo(todoEntity: TodoEntity) {
         todo_title.text = SpannableStringBuilder(todoEntity.title)

@@ -20,10 +20,10 @@ class TodosListViewModel(private val database: TodosDatabase) : TodosViewModel()
     }
 
     fun addTodo() {
-        navigateTo(TodosListDirections.actionTodosListToEditTodo(EditTodo.NEW_TODO))
+        goTo(TodosListDirections.actionTodosListToEditTodo(EditTodo.NEW_TODO))
     }
 
     fun onTodoClick(todoId: Long) {
-        navigateTo(TodosListDirections.actionTodosListToEditTodo(todoId))
+        goTo(TodosListDirections.actionTodosListToEditTodo(todoId))
     }
 }

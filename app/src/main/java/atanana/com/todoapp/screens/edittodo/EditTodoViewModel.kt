@@ -22,12 +22,11 @@ class EditTodoViewModel(private val database: TodosDatabase) : TodosViewModel() 
 
     fun updateTodo(title: String, text: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val todo = todo.value
-            if (todo != null) {
-                todo.title = title
-                todo.text = text
-                database.todosDao().insert(todo)
-            }
+            val todo = todo.value!!
+            todo.title = title
+            todo.text = text
+            database.todosDao().insert(todo)
+//            goBack()
         }
     }
 }
