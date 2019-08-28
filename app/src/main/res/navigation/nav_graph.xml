@@ -12,12 +12,20 @@
         tools:layout="@layout/fragment_todos_list">
         <action
             android:id="@+id/action_todosList_to_editTodo"
-            app:destination="@id/editTodo" />
+            app:destination="@id/editTodo"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/editTodo"
         android:name="atanana.com.todoapp.screens.edittodo.EditTodo"
         android:label="fragment_edit_todo"
-        tools:layout="@layout/fragment_edit_todo" />
+        tools:layout="@layout/fragment_edit_todo">
+        <argument
+            android:name="todoId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

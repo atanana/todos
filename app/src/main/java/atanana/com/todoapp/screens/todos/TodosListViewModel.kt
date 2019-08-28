@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import atanana.com.todoapp.db.TodoEntity
 import atanana.com.todoapp.db.TodosDatabase
 import atanana.com.todoapp.screens.TodosViewModel
+import atanana.com.todoapp.screens.edittodo.EditTodo
 import kotlinx.coroutines.launch
 
 class TodosListViewModel(private val database: TodosDatabase) : TodosViewModel() {
@@ -16,5 +17,9 @@ class TodosListViewModel(private val database: TodosDatabase) : TodosViewModel()
         viewModelScope.launch {
             todosData.value = database.todosDao().allTodos()
         }
+    }
+
+    fun addTodo() {
+        navigateTo(TodosListDirections.actionTodosListToEditTodo(EditTodo.NEW_TODO))
     }
 }

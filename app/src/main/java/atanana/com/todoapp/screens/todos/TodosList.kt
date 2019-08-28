@@ -29,7 +29,7 @@ class TodosList : TodosFragment<TodosListViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         add_todo.setOnClickListener {
-            //            presenter.addTodo()
+            model.addTodo()
         }
 
         todos_list.layoutManager =

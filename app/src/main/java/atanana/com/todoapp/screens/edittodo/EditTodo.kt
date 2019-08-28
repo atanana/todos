@@ -36,6 +36,7 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
     }
 
     companion object {
+        const val NEW_TODO = -1
         const val KEY_TODO = "todo"
 
         fun newInstance(): EditTodo = EditTodo()
