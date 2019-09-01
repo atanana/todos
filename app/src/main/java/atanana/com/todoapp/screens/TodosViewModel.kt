@@ -5,8 +5,7 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import atanana.com.todoapp.screens.NavigationAction.GoBack
-import atanana.com.todoapp.screens.NavigationAction.GoTo
+import atanana.com.todoapp.screens.NavigationAction.*
 import com.hadilq.liveevent.LiveEvent
 
 abstract class TodosViewModel : ViewModel() {
@@ -26,6 +25,10 @@ abstract class TodosViewModel : ViewModel() {
 
     fun showToast(@StringRes message: Int) {
         toastData.postValue(message)
+    }
+
+    fun startActivity(intent: Intent, requestCode: Int) {
+        navigationData.postValue(StartActivity(intent, requestCode))
     }
 
     open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {}

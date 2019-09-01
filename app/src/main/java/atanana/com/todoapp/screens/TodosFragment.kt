@@ -6,8 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import atanana.com.todoapp.screens.NavigationAction.GoBack
-import atanana.com.todoapp.screens.NavigationAction.GoTo
+import atanana.com.todoapp.screens.NavigationAction.*
 
 abstract class TodosFragment<V : TodosViewModel> : Fragment() {
     protected abstract val model: V
@@ -19,6 +18,7 @@ abstract class TodosFragment<V : TodosViewModel> : Fragment() {
             when (action) {
                 GoBack -> findNavController().navigateUp()
                 is GoTo -> findNavController().navigate(action.directions)
+                is StartActivity -> startActivityForResult(action.intent, action.requestCode)
             }
         })
 

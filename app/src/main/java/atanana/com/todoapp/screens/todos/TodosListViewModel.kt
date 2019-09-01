@@ -32,13 +32,16 @@ class TodosListViewModel(private val database: TodosDatabase) : TodosViewModel()
         goTo(TodosListDirections.actionTodosListToEditTodo(todoId))
     }
 
-    fun onSignInClick(activity: Activity) {
-        val providers = arrayListOf(AuthUI.IdpConfig.GoogleBuilder().build())
+    fun onSignInClick() {
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+            AuthUI.IdpConfig.EmailBuilder().build()
+        )
         val intent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .build()
-        activity.startActivityForResult(intent, REQUEST_CODE_SIGN_IN)
+        startActivity(intent, REQUEST_CODE_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

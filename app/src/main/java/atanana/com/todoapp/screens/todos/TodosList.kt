@@ -1,7 +1,6 @@
 package atanana.com.todoapp.screens.todos
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class TodosList : TodosFragment<TodosListViewModel>() {
         add_todo.setOnClickListener {
             model.addTodo()
         }
-        sign_in.setOnClickListener { model.onSignInClick(requireActivity()) }
+        sign_in.setOnClickListener { model.onSignInClick() }
 
         todos_list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
