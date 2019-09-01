@@ -1,14 +1,15 @@
 package atanana.com.todoapp.screens
 
+import android.app.Application
 import android.content.Intent
 import androidx.annotation.StringRes
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import atanana.com.todoapp.screens.NavigationAction.*
 import com.hadilq.liveevent.LiveEvent
 
-abstract class TodosViewModel : ViewModel() {
+abstract class TodosViewModel(protected val app: Application) : AndroidViewModel(app) {
     private val navigationData = LiveEvent<NavigationAction>()
     val navigation: LiveData<NavigationAction> = navigationData
 

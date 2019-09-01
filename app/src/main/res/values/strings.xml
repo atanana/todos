@@ -3,7 +3,9 @@
     <string name="edit_todo_title_hint">Title</string>
     <string name="edit_todo_text_hint">Todo notes</string>
 
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">Do you want to sign in?</string>
+    <string name="signed_in">You signed in as: %s</string>
     <string name="sign_in_success">Success!</string>
     <string name="error_sign_in">Unable to sign in!</string>
+    <string name="unknown_user">Unknown</string>
 </resources>

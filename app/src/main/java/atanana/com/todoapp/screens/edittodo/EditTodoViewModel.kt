@@ -1,5 +1,6 @@
 package atanana.com.todoapp.screens.edittodo
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,7 +10,8 @@ import atanana.com.todoapp.screens.TodosViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class EditTodoViewModel(private val database: TodosDatabase) : TodosViewModel() {
+class EditTodoViewModel(app: Application, private val database: TodosDatabase) :
+    TodosViewModel(app) {
     private val todoData = MutableLiveData<TodoEntity>()
     val todo: LiveData<TodoEntity> = todoData
 

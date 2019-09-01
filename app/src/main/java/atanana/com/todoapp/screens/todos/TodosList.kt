@@ -28,7 +28,7 @@ class TodosList : TodosFragment<TodosListViewModel>() {
         add_todo.setOnClickListener {
             model.addTodo()
         }
-        sign_in.setOnClickListener { model.onSignInClick() }
+        user_header.setOnClickListener { model.onSignInClick() }
 
         todos_list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -36,6 +36,13 @@ class TodosList : TodosFragment<TodosListViewModel>() {
 
         model.todos.observe(viewLifecycleOwner, Observer { todos ->
             adapter.submitList(todos)
+        })
+        model.user.observe(viewLifecycleOwner, Observer { userState ->
+            when (userState) {
+                UserState.Anonymous -> user_header.setText(R.string.sign_in)
+                is UserState.User ->
+                    user_header.text = getString(R.string.signed_in, userState.name)
+            }
         })
     }
 
