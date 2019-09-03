@@ -10,7 +10,7 @@ import androidx.activity.addCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import atanana.com.todoapp.R
-import atanana.com.todoapp.db.TodoEntity
+import atanana.com.todoapp.data.Todo
 import atanana.com.todoapp.screens.TodosFragment
 import kotlinx.android.synthetic.main.fragment_edit_todo.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -39,9 +39,9 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
         }
     }
 
-    fun setTodo(todoEntity: TodoEntity) {
-        todo_title.text = SpannableStringBuilder(todoEntity.title)
-        todo_text.text = SpannableStringBuilder(todoEntity.text)
+    fun setTodo(todo: Todo) {
+        todo_title.text = SpannableStringBuilder(todo.title)
+        todo_text.text = SpannableStringBuilder(todo.text)
     }
 
     companion object {

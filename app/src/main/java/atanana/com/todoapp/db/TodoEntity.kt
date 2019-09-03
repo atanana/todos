@@ -2,6 +2,7 @@ package atanana.com.todoapp.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import atanana.com.todoapp.data.Todo
 
 @Entity(tableName = "todos")
 data class TodoEntity(
@@ -9,4 +10,8 @@ data class TodoEntity(
     var id: Long? = null,
     var title: String = "",
     var text: String = ""
-)
+) {
+    fun toTodo() = Todo(id, title, text)
+}
+
+fun Todo.toEntity() = TodoEntity(id, title, text)

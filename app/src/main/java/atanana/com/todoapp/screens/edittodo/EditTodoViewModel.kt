@@ -4,21 +4,21 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import atanana.com.todoapp.db.TodoEntity
-import atanana.com.todoapp.db.TodosDatabase
+import atanana.com.todoapp.data.Repository
+import atanana.com.todoapp.data.Todo
 import atanana.com.todoapp.screens.TodosViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class EditTodoViewModel(app: Application, private val database: TodosDatabase) :
+class EditTodoViewModel(app: Application, private val repository: Repository) :
     TodosViewModel(app) {
-    private val todoData = MutableLiveData<TodoEntity>()
-    val todo: LiveData<TodoEntity> = todoData
+    private val todoData = MutableLiveData<Todo>()
+    val todo: LiveData<Todo> = todoData
 
     fun init(args: EditTodoArgs) {
         viewModelScope.launch(Dispatchers.IO) {
-            val todo = database.todosDao().byId(args.todoId)
-            todoData.postValue(todo ?: TodoEntity())
+            val todo = repository.byId(args.todoId)
+            todoData.postValue(todo ?: Todo())
         }
     }
 
@@ -27,7 +27,7 @@ class EditTodoViewModel(app: Application, private val database: TodosDatabase) :
             val todo = todo.value!!
             todo.title = title
             todo.text = text
-            database.todosDao().insert(todo)
+            repository.add(todo)
             goBack()
         }
     }
