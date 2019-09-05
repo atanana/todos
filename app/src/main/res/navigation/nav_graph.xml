@@ -26,6 +26,6 @@
         tools:layout="@layout/fragment_edit_todo">
         <argument
             android:name="todoId"
-            app:argType="long" />
+            app:argType="string" />
     </fragment>
 </navigation>

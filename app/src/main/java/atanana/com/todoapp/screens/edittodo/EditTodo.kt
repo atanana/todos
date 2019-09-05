@@ -45,6 +45,6 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
     }
 
     companion object {
-        const val NEW_TODO = -1L
+        const val NEW_TODO = "new"
     }
 }

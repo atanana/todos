@@ -10,7 +10,7 @@ import atanana.com.todoapp.data.Todo
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_todo.*
 
-class TodosListAdapter(private val onTodoClick: (todoId: Long) -> Unit) :
+class TodosListAdapter(private val onTodoClick: (todoId: String) -> Unit) :
     ListAdapter<Todo, TodoViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): TodoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -31,10 +31,10 @@ class TodosListAdapter(private val onTodoClick: (todoId: Long) -> Unit) :
     }
 }
 
-class TodoViewHolder(override val containerView: View, private val onTodoClick: (todoId: Long) -> Unit) :
+class TodoViewHolder(override val containerView: View, private val onTodoClick: (todoId: String) -> Unit) :
     androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(todo: Todo) {
         todo_title.text = todo.title
-        containerView.setOnClickListener { onTodoClick(todo.id!!) }
+        containerView.setOnClickListener { onTodoClick(todo.id) }
     }
 }

@@ -1,18 +1,21 @@
 package atanana.com.todoapp.data
 
-import atanana.com.todoapp.db.TodoEntity
-import atanana.com.todoapp.db.TodosDatabase
-import atanana.com.todoapp.db.toEntity
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.firestore.ktx.toObjects
+import kotlinx.coroutines.tasks.await
 
-class Repository(database: TodosDatabase) {
-    private val todoDao = database.todosDao()
+class Repository(private val firestore: FirebaseFirestore) {
+    private val todos: CollectionReference
+        get() = firestore.collection("todos")
 
-    suspend fun allTodos(): List<Todo> = todoDao.allTodos()
-        .map(TodoEntity::toTodo)
+    suspend fun allTodos(): List<Todo> =
+        todos.get().await().toObjects()
 
     suspend fun add(todo: Todo) {
-        todoDao.insert(todo.toEntity())
+        todos.add(todo).await()
     }
 
-    suspend fun byId(id: Long): Todo? = todoDao.byId(id)?.toTodo()
+    suspend fun byId(id: String): Todo? = todos.document(id).get().await().toObject<Todo>()
 }

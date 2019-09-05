@@ -11,7 +11,7 @@ data class TodoEntity(
     var title: String = "",
     var text: String = ""
 ) {
-    fun toTodo() = Todo(id, title, text)
+    fun toTodo() = Todo(id.toString(), title, text)
 }
 
-fun Todo.toEntity() = TodoEntity(id, title, text)
+fun Todo.toEntity() = TodoEntity(id.toLong(), title, text)

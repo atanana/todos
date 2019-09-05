@@ -38,7 +38,7 @@ class TodosListViewModel(app: Application, private val repository: Repository) :
         goTo(TodosListDirections.actionTodosListToEditTodo(EditTodo.NEW_TODO))
     }
 
-    fun onTodoClick(todoId: Long) {
+    fun onTodoClick(todoId: String) {
         goTo(TodosListDirections.actionTodosListToEditTodo(todoId))
     }
 
