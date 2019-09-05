@@ -10,7 +10,6 @@ import atanana.com.todoapp.R
 import atanana.com.todoapp.data.Repository
 import atanana.com.todoapp.data.Todo
 import atanana.com.todoapp.screens.TodosViewModel
-import atanana.com.todoapp.screens.edittodo.EditTodo
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +34,7 @@ class TodosListViewModel(app: Application, private val repository: Repository) :
     }
 
     fun addTodo() {
-        goTo(TodosListDirections.actionTodosListToEditTodo(EditTodo.NEW_TODO))
+        goTo(TodosListDirections.actionTodosListToEditTodo(Repository.NEW_TODO))
     }
 
     fun onTodoClick(todoId: String) {

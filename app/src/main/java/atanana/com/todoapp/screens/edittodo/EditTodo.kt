@@ -43,8 +43,4 @@ class EditTodo : TodosFragment<EditTodoViewModel>() {
         todo_title.text = SpannableStringBuilder(todo.title)
         todo_text.text = SpannableStringBuilder(todo.text)
     }
-
-    companion object {
-        const val NEW_TODO = "new"
-    }
 }

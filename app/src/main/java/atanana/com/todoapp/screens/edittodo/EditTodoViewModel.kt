@@ -27,7 +27,7 @@ class EditTodoViewModel(app: Application, private val repository: Repository) :
             val todo = todo.value!!
             todo.title = title
             todo.text = text
-            repository.add(todo)
+            repository.update(todo)
             goBack()
         }
     }
